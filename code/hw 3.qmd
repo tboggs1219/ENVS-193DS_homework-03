@@ -82,7 +82,7 @@ ggplot(data = data_clean,
 
 #### c. Caption
 
-The above figure depicts average energy level by sleep quality, with the box plot layer showing median energy and IQR across sleep quality ratings. The underlying data, represented by open points, show daily averages, with each point symbolizing one day of observations. Energy level was recorded three times per day (in the morning, afternoon, and evening) in order to calculate daily averages.
+The above figure depicts average energy level by sleep quality, with the box plot layer showing median energy and IQR across sleep quality ratings. The underlying data, represented by open points, show daily averages, with each point symbolizing one day of observations. Energy level was recorded three times per day (in the morning, afternoon, and evening) in order to calculate daily averages. Generally, as sleep quality increases, average energy level also increase, evidenced by the increasing median energy levels across sleep quality ratings.
 
 #### d. Table presentation
 
