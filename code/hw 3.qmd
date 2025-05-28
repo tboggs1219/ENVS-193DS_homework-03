@@ -25,6 +25,8 @@ data <- read_excel(
    here("data", "personal-data.xlsx"))
 ```
 
+### Problem 1. Personal data
+
 #### a. Data summarizing
 
 My data can be summarized by calculating mean energy level to compare between days, with each day having variable caffeine intake, sleep quality, sleep duration, etc.: mean daily energy level will be my response variable, with potential explanatory variables including those aforementioned (caffeine intake, sleep quality, etc.). Calculating the average for each day will allow for comparison given the fact that there are daily differences between explanatory variables.
@@ -66,7 +68,7 @@ ggplot(data = data_clean,
  
   labs(
     # chart title
-    title = "Daily Average Energy Level by Sleep Quality",
+    title = "Average Energy Level by Sleep Quality",
     # x-axis label
     x = "Sleep Quality (1-10)",
     # y-axis label
@@ -76,3 +78,7 @@ ggplot(data = data_clean,
 
 
 ```
+
+#### c. Caption
+
+The above figure depicts average energy level by sleep quality, with the box plot layer showing median energy and IQR across sleep quality ratings. The underlying data, represented by open points, show daily averages, with each point symbolizing one day of observations. Energy level was recorded three times per day (in the morning, afternoon, and evening) in order to calculate daily averages.
