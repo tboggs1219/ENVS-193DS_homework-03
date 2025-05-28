@@ -1,7 +1,7 @@
 ---
 title: "Homework 3"
 author: Tehya Boggs
-format: docx
+format: html
 editor: visual
 ---
 
