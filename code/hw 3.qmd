@@ -19,5 +19,7 @@ library(janitor)
 library(readxl)
 
 # read in data
-data <- read_excel("data/personal-data.xlsx")
+data <- read_excel(
+  # data path
+   here("data", "personal-data.xlsx"))
 ```
