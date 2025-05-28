@@ -17,9 +17,62 @@ library(here)
 library(flextable)
 library(janitor)
 library(readxl)
+library(dplyr)
 
 # read in data
 data <- read_excel(
   # data path
    here("data", "personal-data.xlsx"))
+```
+
+#### a. Data summarizing
+
+My data can be summarized by calculating mean energy level to compare between days, with each day having variable caffeine intake, sleep quality, sleep duration, etc.: mean daily energy level will be my response variable, with potential explanatory variables including those aforementioned (caffeine intake, sleep quality, etc.). Calculating the average for each day will allow for comparison given the fact that there are daily differences between explanatory variables.
+
+#### b. Visualization
+
+```{r visualization}
+
+data$`date (yyyy-mm-dd)` <- as.Date(data$`date (yyyy-mm-dd)`) # classify date column as date
+
+data_clean <- data %>% # using data df
+  group_by(`date (yyyy-mm-dd)`) %>% # group rows by date
+  summarise(
+    # new column calculating mean energy per day
+    avg_energy = mean(`energy level (1-10)`),
+    # new column showing total caffeine     intake per day
+    total_caffeine = max(`total caffeine intake (mg)`),
+    # new column showing single sleep quality rating for that day
+    sleep_quality = max(`sleep quality (1-10)`)
+  ) %>% 
+  # clean column names
+  clean_names() 
+
+# plot using summarized data
+ggplot(data = data_clean,
+       aes(x = factor(sleep_quality), # sleep quality score on the x-axis
+           y = avg_energy)) + # avg energy on the y-axis
+ 
+   # first layer: boxplot
+  geom_boxplot(fill = "lightblue3", color = "darkblue") +
+  
+  # second layer: jitter showing underlying data, each data point represents one day
+  geom_jitter(width = 0.3, # set horizontal jitter
+              height = 0, # set vertical jitter
+              shape = 21, # change shape to support fill/color arguments
+              fill = NA, # no fill
+              color = "royalblue4", # change outline
+              stroke = 1.1) + # outline thickness
+ 
+  labs(
+    # chart title
+    title = "Daily Average Energy Level by Sleep Quality",
+    # x-axis label
+    x = "Sleep Quality (1-10)",
+    # y-axis label
+    y = "Average Energy Level (1-10)"
+  ) +
+    theme_minimal() # change theme from default
+
+
 ```
