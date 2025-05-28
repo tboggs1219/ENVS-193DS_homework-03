@@ -1,0 +1,23 @@
+---
+title: "homework 3"
+format: docx
+editor: visual
+---
+
+### GitHub Repository Link: <https://github.com/tboggs1219/ENVS-193DS_homework-03.git>
+
+```{r setup, message = FALSE, warning = FALSE}
+
+# install.packages("here")
+# install.packages("readxl")
+
+# read in packages
+library(tidyverse)
+library(here)
+library(flextable)
+library(janitor)
+library(readxl)
+
+# read in data
+data <- read_excel("data/personal-data.xlsx")
+```
