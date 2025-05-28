@@ -1,5 +1,6 @@
 ---
-title: "homework 3"
+title: "Homework 3"
+author: Tehya Boggs
 format: docx
 editor: visual
 ---
@@ -41,7 +42,7 @@ data_clean <- data %>% # using data df
   group_by(`date (yyyy-mm-dd)`) %>% # group rows by date
   summarise(
     # new column calculating mean energy per day
-    avg_energy = mean(`energy level (1-10)`),
+    avg_energy = round(mean(`energy level (1-10)`), 1),
     # new column showing total caffeine     intake per day
     total_caffeine = max(`total caffeine intake (mg)`),
     # new column showing single sleep quality rating for that day
@@ -82,3 +83,20 @@ ggplot(data = data_clean,
 #### c. Caption
 
 The above figure depicts average energy level by sleep quality, with the box plot layer showing median energy and IQR across sleep quality ratings. The underlying data, represented by open points, show daily averages, with each point symbolizing one day of observations. Energy level was recorded three times per day (in the morning, afternoon, and evening) in order to calculate daily averages.
+
+#### d. Table presentation
+
+```{r table presentation}
+
+# display summarized data table using data_clean
+flextable(data_clean) %>% 
+  # change column names
+  set_header_labels( 
+    date_yyyy_mm_dd = "Date",
+    avg_energy = "Mean Daily Energy Level (1-10)",
+    total_caffeine = "Total Caffeine Intake (mg)",
+    sleep_quality = "Sleep Quality (1-10)"
+  ) %>% 
+  autofit()
+
+```
