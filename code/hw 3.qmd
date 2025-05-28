@@ -100,3 +100,23 @@ flextable(data_clean) %>%
   autofit()
 
 ```
+
+### Problem 2. Affective visualization
+
+#### a. Describe in words what an affective visualization could look like for your personal data (3-5 sentences).
+
+#### b. Create a sketch (on paper) of your idea.
+
+#### c. Make a draft of your visualization.
+
+#### d. Write an artist statement.
+
+### Problem 3. Statistical critique
+
+#### a. Revisit and summarize
+
+#### b. Visual clarity
+
+#### c. Aesthetic clarity
+
+#### d. Recommendations
