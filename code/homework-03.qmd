@@ -1,0 +1,122 @@
+---
+title: "Homework 3"
+author: Tehya Boggs
+format: html
+editor: visual
+---
+
+### GitHub Repository Link: <https://github.com/tboggs1219/ENVS-193DS_homework-03.git>
+
+```{r setup, message = FALSE, warning = FALSE}
+
+# install.packages("here")
+# install.packages("readxl")
+
+# read in packages
+library(tidyverse)
+library(here)
+library(flextable)
+library(janitor)
+library(readxl)
+library(dplyr)
+
+# read in data
+data <- read_excel(
+  # data path
+   here("data", "personal-data.xlsx"))
+```
+
+### Problem 1. Personal data
+
+#### a. Data summarizing
+
+My data can be summarized by calculating mean energy level to compare between days, with each day having variable caffeine intake, sleep quality, sleep duration, etc.: mean daily energy level will be my response variable, with potential explanatory variables including those aforementioned (caffeine intake, sleep quality, etc.). Calculating the average for each day will allow for comparison given the fact that there are daily differences between explanatory variables.
+
+#### b. Visualization
+
+```{r visualization}
+
+data$`date (yyyy-mm-dd)` <- as.Date(data$`date (yyyy-mm-dd)`) # classify date column as date
+
+data_clean <- data %>% # using data df
+  group_by(`date (yyyy-mm-dd)`) %>% # group rows by date
+  summarise(
+    # new column calculating mean energy per day
+    avg_energy = round(mean(`energy level (1-10)`), 1),
+    # new column showing total caffeine     intake per day
+    total_caffeine = max(`total caffeine intake (mg)`),
+    # new column showing single sleep quality rating for that day
+    sleep_quality = max(`sleep quality (1-10)`)
+  ) %>% 
+  # clean column names
+  clean_names() 
+
+# plot using summarized data
+ggplot(data = data_clean,
+       aes(x = factor(sleep_quality), # sleep quality score on the x-axis
+           y = avg_energy)) + # avg energy on the y-axis
+ 
+   # first layer: boxplot
+  geom_boxplot(fill = "lightblue3", color = "darkblue") +
+  
+  # second layer: jitter showing underlying data, each data point represents one day
+  geom_jitter(width = 0.3, # set horizontal jitter
+              height = 0, # set vertical jitter
+              shape = 21, # change shape to support fill/color arguments
+              fill = NA, # no fill
+              color = "royalblue4", # change outline
+              stroke = 1.1) + # outline thickness
+ 
+  labs(
+    # chart title
+    title = "Average Energy Level by Sleep Quality",
+    # x-axis label
+    x = "Sleep Quality (1-10)",
+    # y-axis label
+    y = "Average Energy Level (1-10)"
+  ) +
+    theme_minimal() # change theme from default
+
+
+```
+
+#### c. Caption
+
+The above figure depicts average energy level by sleep quality, with the box plot layer showing median energy and IQR across sleep quality ratings. The underlying data, represented by open points, show daily averages, with each point symbolizing one day of observations. Energy level was recorded three times per day (in the morning, afternoon, and evening) in order to calculate daily averages. Generally, as sleep quality increases, average energy level also increase, evidenced by the increasing median energy levels across sleep quality ratings.
+
+#### d. Table presentation
+
+```{r table presentation}
+
+# display summarized data table using data_clean
+flextable(data_clean) %>% 
+  # change column names
+  set_header_labels( 
+    date_yyyy_mm_dd = "Date",
+    avg_energy = "Mean Daily Energy Level (1-10)",
+    total_caffeine = "Total Caffeine Intake (mg)",
+    sleep_quality = "Sleep Quality (1-10)"
+  ) %>% 
+  autofit()
+
+```
+
+### Problem 2. Affective visualization
+
+#### a. Describe in words what an affective visualization could look like for your personal data (3-5 sentences).
+
+#### b. Create a sketch (on paper) of your idea.
+
+#### c. Make a draft of your visualization.
+
+#### d. Write an artist statement.
+
+### Problem 3. Statistical critique
+
+#### a. Revisit and summarize
+
+#### b. Visual clarity
+
+#### c. Aesthetic clarity
+
+#### d. Recommendations
