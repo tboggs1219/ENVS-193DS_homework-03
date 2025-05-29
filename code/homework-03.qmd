@@ -1,6 +1,7 @@
 ---
 title: "Homework 3"
 author: Tehya Boggs
+date: May 28, 2025
 format: html
 editor: visual
 ---
@@ -105,18 +106,30 @@ flextable(data_clean) %>%
 
 #### a. Describe in words what an affective visualization could look like for your personal data (3-5 sentences).
 
+Affective visualization methods seek to implement creative strategies in order to have an emotional impact on viewers. In the context of my data, featuring daily energy level according to caffeine intake and sleep quality, affective visualization could take the form of a calendar heat map, similar to that of temperature heat maps that show temperature averages by color. Instead, cell color would represent average energy level, with each cell representing one day. Icons depicting caffeine intake and sleep quality would be overlayed over each cell, potentially with a coffee cup indicating how many energy drinks were consumed per day, and icons to indicate sleep quality categorized into high (7-10), moderate (4-6), and low (1-3) designations.
+
 #### b. Create a sketch (on paper) of your idea.
 
 #### c. Make a draft of your visualization.
 
 #### d. Write an artist statement.
 
+The above heat map illustrates daily average energy level on a monochromatic color scale, with darker colors representative of higher energy on a scale from one to ten, also featuring mugs and stars to delineate caffeine intake and sleep quality. The figure draws inspiration from temperature heat maps, such as Lorraine Woodruff-Long's warming strips quilt, and was created using acrylic paint on canvas.
+
 ### Problem 3. Statistical critique
 
 #### a. Revisit and summarize
 
+"Statistical analysis of the patterns and characteristics of connected and autonomous vehicle involved crashes" by Xu et al. investigates the severity of connected and autonomous vehicle (CAV) involved traffic collisions dependent on multiple variables, ranging from CAV driving mode, accident location, the presence of roadside parking, and more. The authors developed a binary logistic regression model to describe how such independent factors influence the severity of CAV involved traffic collisions, with severity determined on a binary scale involving either property-damage-only (PDO) crashes or crashes with reported injury or pain. These independent factors were coded on a binary scale with a value of 0 or 1 to indicate a variables involvement in a collision. The output of this statistical test provides a coefficient that describes the strength of the association of the independent variable to the response variable, as well as a p-value indicating the statistical significance of such correlation. Authors presented test results for the crash severity model in a table.
+
 #### b. Visual clarity
+
+The data effectively represents the binary logistic regression model for CAV collision severity given that it only includes predictor variables that are statistically significant, despite other factors having been investigated in the paper's analysis.
 
 #### c. Aesthetic clarity
 
+Authors combated visual clutter by bolding column titles, and presenting coefficient values in the first column after variable name for greater readability. Summary statistics indicating log transformed odds and odds ratio values are also somewhat separate from variable statistics, increasing the clarity of the test output.
+
 #### d. Recommendations
+
+It is recommended that the variable names be simplified for viewer to more easily interpret their meaning on a binary scale. For example, the variable "CAV stopped or not" could be changes to "CAV stopped" to facilitate understanding that a coded value of 1 indicates the affirmation of that variable, as in the CAV is stopped. Further more, "Mode" could be "Autonomous Driving" so that driving mode can be inferred without Table 1 in the article, which serves as a key for variable categories and meanings.
